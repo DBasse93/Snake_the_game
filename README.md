@@ -1,7 +1,7 @@
 # Snake_the_game
 A old school title 
 
-<img width="2924" height="2180" alt="image" src="https://github.com/user-attachments/assets/78d426b3-41a7-439d-8579-f3a0358aed56" />
+<img width="2924" height="2180" alt="image" src="https://github.com/user-attachments/assets/72736a46-dfab-431e-bd07-a817cf8a1cc1" />
 
 ## Snake Mechanics
 

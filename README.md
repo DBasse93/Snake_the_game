@@ -51,3 +51,137 @@ Rendering is done using JavaFX graphics components and animations.
 Goal of the Game
 
 Collect as many apples as possible, grow your snake, and achieve the highest score without colliding with the walls or your own body.
+```mermaid
+classDiagram
+
+%% ======================
+%% CORE GAME STRUCTURE
+%% ======================
+
+class SnakeGame {
+    - GameLoop gameLoop
+    - GameBoard gameBoard
+    - Snake snake
+    - Apple apple
+    - ScoreManager scoreManager
+    - InputHandler inputHandler
+    - CollisionDetector collisionDetector
+    - GameRenderer renderer
+    - boolean running
+    + start()
+    + update()
+    + gameOver()
+    + restart()
+}
+
+class GameLoop {
+    - int tickRate
+    + start()
+    + stop()
+    + runTick()
+}
+
+%% ======================
+%% GAME WORLD / STATE
+%% ======================
+
+class GameBoard {
+    - int width
+    - int height
+    - int cellSize
+}
+
+class Snake {
+    - List~Position~ body
+    - Direction direction
+    - boolean growing
+    + move()
+    + grow()
+    + setDirection(Direction)
+    + getHead()
+}
+
+class Apple {
+    - Position position
+    + respawn()
+    + getPosition()
+}
+
+class Position {
+    + int x
+    + int y
+}
+
+class Direction {
+    <<enumeration>>
+    UP
+    DOWN
+    LEFT
+    RIGHT
+}
+
+%% ======================
+%% GAME LOGIC
+%% ======================
+
+class CollisionDetector {
+    + checkWallCollision(Snake, GameBoard)
+    + checkSelfCollision(Snake)
+    + checkAppleCollision(Snake, Apple)
+}
+
+class ScoreManager {
+    - int score
+    - int highScore
+    + increase()
+    + reset()
+    + getScore()
+}
+
+class InputHandler {
+    - Direction currentDirection
+    + handleKeyPress()
+    + getDirection()
+}
+
+%% ======================
+%% UI LAYER (JAVAFX)
+%% ======================
+
+class GameRenderer {
+    + render(Snake, Apple, GameBoard)
+    + drawSnake(Snake)
+    + drawApple(Apple)
+    + drawGrid(GameBoard)
+    + renderUI(ScoreManager)
+}
+
+%% ======================
+%% RELATIONSHIPS
+%% ======================
+
+SnakeGame --> GameLoop
+SnakeGame --> GameBoard
+SnakeGame --> Snake
+SnakeGame --> Apple
+SnakeGame --> ScoreManager
+SnakeGame --> InputHandler
+SnakeGame --> CollisionDetector
+SnakeGame --> GameRenderer
+
+GameLoop --> SnakeGame
+
+Snake --> Position
+Apple --> Position
+Snake --> Direction
+InputHandler --> Direction
+
+CollisionDetector ..> Snake
+CollisionDetector ..> Apple
+CollisionDetector ..> GameBoard
+
+GameRenderer ..> Snake
+GameRenderer ..> Apple
+GameRenderer ..> GameBoard
+GameRenderer ..> ScoreManager
+```

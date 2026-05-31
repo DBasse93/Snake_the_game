@@ -51,6 +51,35 @@ Rendering is done using JavaFX graphics components and animations.
 Goal of the Game
 
 Collect as many apples as possible, grow your snake, and achieve the highest score without colliding with the walls or your own body.
+
+```mermaid
+stateDiagram-v2
+
+%% ======================
+%% HIGH LEVEL STATES
+%% ======================
+
+[*] --> INIT
+
+INIT --> RUNNING : START
+RUNNING --> GAME_OVER : COLLISION
+GAME_OVER --> INIT : RESTART
+
+%% ======================
+%% GAME LOOP (inside RUNNING)
+%% ======================
+
+state RUNNING {
+
+    [*] --> INPUT
+    INPUT --> UPDATE : Direction set
+    UPDATE --> COLLISION_CHECK : Move Snake
+    COLLISION_CHECK --> STATE_CHANGE : Evaluate Game State
+    STATE_CHANGE --> RENDER : Apply Results
+    RENDER --> INPUT : Next Tick
+}
+```
+
 ```mermaid
 classDiagram
 

@@ -54,5 +54,6 @@ Collect as many apples as possible, grow your snake, and achieve the highest sco
 
 ## Tech Stack:
 
-Core Java --> APP
-JavaFx --> GUI
+- Maven --> Project Setup
+- Core Java --> APP
+- JavaFx --> GUI

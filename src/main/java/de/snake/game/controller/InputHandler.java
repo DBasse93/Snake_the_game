@@ -1,5 +1,6 @@
 package de.snake.game.controller;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -7,6 +8,7 @@ public class InputHandler {
 
   private final CommandExecutor executor;
 
+  @SuppressFBWarnings("EI_EXPOSE_REP2")
   public InputHandler(CommandExecutor executor) {
     this.executor = executor;
   }

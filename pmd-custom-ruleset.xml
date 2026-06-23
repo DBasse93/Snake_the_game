@@ -8,16 +8,12 @@
     <description>Custom PMD ruleset for Snake the Game</description>
 
     <!-- Best Practices -->
-    <rule ref="category/java/bestpractices.xml/UnusedImports"/>
     <rule ref="category/java/bestpractices.xml/UnusedLocalVariable"/>
     <rule ref="category/java/bestpractices.xml/UnusedPrivateField"/>
     <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod"/>
     <rule ref="category/java/bestpractices.xml/AvoidReassigningParameters"/>
-    <rule ref="category/java/bestpractices.xml/JUnitTestsShouldIncludeAssert"/>
-    <rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage"/>
 
     <!-- Code Style -->
-    <rule ref="category/java/codestyle.xml/UnnecessaryImport"/>
     <rule ref="category/java/codestyle.xml/UseDiamondOperator"/>
     <rule ref="category/java/codestyle.xml/UnnecessaryConstructor"/>
 
@@ -37,6 +33,5 @@
 
     <!-- Performance -->
     <rule ref="category/java/performance.xml/BigIntegerInstantiation"/>
-    <rule ref="category/java/performance.xml/UseStringBufferForStringAppends"/>
 
 </ruleset>

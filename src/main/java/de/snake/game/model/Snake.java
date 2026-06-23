@@ -49,7 +49,7 @@ public class Snake {
   }
 
   public List<Position> getBody() {
-    return body;
+    return java.util.Collections.unmodifiableList(body);
   }
 
   public Direction getDirection() {

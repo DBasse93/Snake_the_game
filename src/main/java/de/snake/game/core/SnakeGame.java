@@ -7,6 +7,10 @@ public class SnakeGame {
 
   private GameState currentState;
 
+  public SnakeGame() {
+    this.currentState = new de.snake.game.state.InitState(this);
+  }
+
   public void setState(GameState state) {
     this.currentState = state;
   }

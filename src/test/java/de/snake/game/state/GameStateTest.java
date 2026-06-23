@@ -34,7 +34,7 @@ class GameStateTest {
 
     runningState.handleTick();
 
-    verify(game).tick();
+    verify(game).runStep();
   }
 
   @Test

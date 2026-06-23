@@ -15,11 +15,11 @@ public class RunningState implements GameState {
 
   @Override
   public void handleTick() {
-    game.tick();
+    game.runStep();
   }
 
   @Override
   public void handleInput(Command command) {
-    command.execute(null);
+    // movement handled by CommandExecutor via InputHandler
   }
 }

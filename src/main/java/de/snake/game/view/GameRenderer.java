@@ -9,6 +9,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,6 +22,7 @@ public class GameRenderer {
   private final Apple apple;
   private final ScoreManager scoreManager;
   private final Canvas canvas;
+  private boolean gameOver;
 
   @SuppressFBWarnings("EI_EXPOSE_REP2")
   public GameRenderer(GameBoard board, Snake snake, Apple apple, ScoreManager scoreManager) {
@@ -31,6 +33,11 @@ public class GameRenderer {
     this.canvas = new Canvas(
         (double) board.getWidth() * board.getCellSize(),
         (double) board.getHeight() * board.getCellSize() + 40);
+    this.gameOver = false;
+  }
+
+  public void setGameOver(boolean gameOver) {
+    this.gameOver = gameOver;
   }
 
   public RenderData getRenderData() {
@@ -39,7 +46,8 @@ public class GameRenderer {
         snake.getBody(),
         apple.getPosition(),
         scoreManager.getScore(),
-        scoreManager.getHighScore());
+        scoreManager.getHighScore(),
+        gameOver);
   }
 
   public void render() {
@@ -65,6 +73,34 @@ public class GameRenderer {
     gc.fillText(
         "Score: " + scoreManager.getScore() + "  High: " + scoreManager.getHighScore(),
         10, (double) board.getHeight() * cell + 25);
+
+    if (gameOver) {
+      renderGameOver(gc);
+    }
+  }
+
+  private void renderGameOver(GraphicsContext gc) {
+    double cx = canvas.getWidth() / 2;
+    double cy = canvas.getHeight() / 2;
+
+    gc.setFill(Color.color(0, 0, 0, 0.65));
+    gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+    gc.setTextAlign(TextAlignment.CENTER);
+
+    gc.setFill(Color.RED);
+    gc.setFont(Font.font("Arial", 48));
+    gc.fillText("GAME OVER", cx, cy - 10);
+
+    gc.setFill(Color.WHITE);
+    gc.setFont(Font.font("Arial", 18));
+    gc.fillText("Score: " + scoreManager.getScore(), cx, cy + 30);
+
+    gc.setFill(Color.LIGHTGRAY);
+    gc.setFont(Font.font("Arial", 14));
+    gc.fillText("Druecke eine Taste zum Neustart", cx, cy + 58);
+
+    gc.setTextAlign(TextAlignment.LEFT);
   }
 
   @SuppressFBWarnings("EI_EXPOSE_REP")

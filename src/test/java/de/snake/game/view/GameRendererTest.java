@@ -1,7 +1,9 @@
 package de.snake.game.view;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import de.snake.game.model.Apple;
 import de.snake.game.model.Direction;
@@ -54,5 +56,17 @@ class GameRendererTest {
   @Test
   void shouldReturnNonNullRenderData() {
     assertNotNull(renderer.getRenderData());
+  }
+
+  @Test
+  void shouldReturnGameOverFalseByDefault() {
+    assertFalse(renderer.getRenderData().gameOver());
+  }
+
+  @Test
+  void shouldReturnGameOverTrueAfterSetGameOver() {
+    renderer.setGameOver(true);
+
+    assertTrue(renderer.getRenderData().gameOver());
   }
 }

@@ -49,6 +49,8 @@ public class Main extends Application {
       if (event instanceof CollisionEvent) {
         logger.info("Collision — game over");
         game.setState(new GameOverState(game));
+        renderer.setGameOver(true);
+        renderer.render();
       } else if (event instanceof AppleEatenEvent) {
         snake.grow();
         scoreManager.increase();

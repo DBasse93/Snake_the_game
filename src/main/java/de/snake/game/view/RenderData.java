@@ -8,7 +8,8 @@ public record RenderData(
     List<Position> snakeBody,
     Position applePosition,
     int score,
-    int highScore
+    int highScore,
+    boolean gameOver
 ) {
   public RenderData {
     snakeBody = List.copyOf(snakeBody);

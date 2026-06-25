@@ -55,4 +55,29 @@ class SnakeTest {
   void shouldContainHeadInBody() {
     assertTrue(snake.getBody().contains(snake.getHead()));
   }
+
+  @Test
+  void shouldResetHeadToStartPosition() {
+    snake.move();
+    snake.reset();
+
+    assertEquals(new Position(5, 5), snake.getHead());
+  }
+
+  @Test
+  void shouldResetDirectionToStartDirection() {
+    snake.setDirection(Direction.UP);
+    snake.reset();
+
+    assertEquals(Direction.RIGHT, snake.getDirection());
+  }
+
+  @Test
+  void shouldResetBodyLengthToOne() {
+    snake.grow();
+    snake.move();
+    snake.reset();
+
+    assertEquals(1, snake.getBody().size());
+  }
 }

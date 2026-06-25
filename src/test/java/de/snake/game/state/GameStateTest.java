@@ -38,11 +38,12 @@ class GameStateTest {
   }
 
   @Test
-  void shouldTransitionToInitStateWhenRestartCalledInGameOverState() {
+  void shouldResetGameAndTransitionToRunningOnGameOverInput() {
     GameOverState gameOverState = new GameOverState(game);
 
     gameOverState.handleInput(command);
 
-    verify(game).setState(any(InitState.class));
+    verify(game).reset();
+    verify(game).setState(any(RunningState.class));
   }
 }

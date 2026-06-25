@@ -7,11 +7,15 @@ import java.util.List;
 public class Snake {
 
   private final LinkedList<Position> body;
+  private final Position startPosition;
+  private final Direction startDirection;
   private Direction direction;
   private boolean growing;
 
   /** Creates a new snake at the given start position moving in the given start direction. */
   public Snake(Position startPosition, Direction startDirection) {
+    this.startPosition = startPosition;
+    this.startDirection = startDirection;
     this.body = new LinkedList<>();
     this.body.add(startPosition);
     this.direction = startDirection;
@@ -67,5 +71,13 @@ public class Snake {
   /** Returns the current movement direction of the snake. */
   public Direction getDirection() {
     return direction;
+  }
+
+  /** Resets the snake to its original start position, direction, and single-segment body. */
+  public void reset() {
+    body.clear();
+    body.add(startPosition);
+    direction = startDirection;
+    growing = false;
   }
 }

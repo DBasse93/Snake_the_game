@@ -41,7 +41,7 @@ public class Main extends Application {
     CollisionDetector collisionDetector = new CollisionDetector(eventBus);
     final Random random = new Random();
 
-    SnakeGame game = new SnakeGame(snake, board, apple, executor, collisionDetector);
+    SnakeGame game = new SnakeGame(snake, board, apple, scoreManager, executor, collisionDetector);
     GameRenderer renderer = new GameRenderer(board, snake, apple, scoreManager);
     final GameLoop gameLoop = new GameLoop(game, renderer);
     InputHandler inputHandler = new InputHandler(executor);

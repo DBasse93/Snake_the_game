@@ -20,7 +20,8 @@ public class GameOverState implements GameState {
 
   @Override
   public void handleInput(Command command) {
-    // Returns to InitState; a second key press is needed to actually start the game
-    game.setState(new InitState(game));
+    // Reset all game state, then go directly to Running so one key press restarts the game
+    game.reset();
+    game.setState(new RunningState(game));
   }
 }

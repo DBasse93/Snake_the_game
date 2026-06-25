@@ -5,6 +5,8 @@ import de.snake.game.controller.Command;
 import de.snake.game.controller.CommandExecutor;
 import de.snake.game.model.Apple;
 import de.snake.game.model.GameBoard;
+import de.snake.game.model.Position;
+import de.snake.game.model.ScoreManager;
 import de.snake.game.model.Snake;
 import de.snake.game.state.GameState;
 import de.snake.game.state.InitState;
@@ -21,16 +23,20 @@ public class SnakeGame {
   private final Snake snake;
   private final GameBoard board;
   private final Apple apple;
+  private final Position initialApplePosition;
+  private final ScoreManager scoreManager;
   private final CommandExecutor executor;
   private final CollisionDetector collisionDetector;
 
   /** Creates a new SnakeGame with all required components and sets the initial state. */
   @SuppressFBWarnings("EI_EXPOSE_REP2")
-  public SnakeGame(Snake snake, GameBoard board, Apple apple,
+  public SnakeGame(Snake snake, GameBoard board, Apple apple, ScoreManager scoreManager,
       CommandExecutor executor, CollisionDetector collisionDetector) {
     this.snake = snake;
     this.board = board;
     this.apple = apple;
+    this.initialApplePosition = apple.getPosition();
+    this.scoreManager = scoreManager;
     this.executor = executor;
     this.collisionDetector = collisionDetector;
     this.currentState = new InitState(this);
@@ -55,6 +61,14 @@ public class SnakeGame {
     collisionDetector.check(snake, board);
     collisionDetector.checkApple(snake, apple);
     logger.debug("Game step executed");
+  }
+
+  /** Resets snake, apple, and score to their initial state for a new game. */
+  public void reset() {
+    snake.reset();
+    apple.setPosition(initialApplePosition);
+    scoreManager.reset();
+    logger.info("Game reset");
   }
 
   /** Forwards a player input command to the current game state. */

@@ -6,6 +6,7 @@ import java.util.List;
 /** Simple publish-subscribe event bus for decoupling game components. */
 public class EventBus {
 
+  // List (not Set) so listeners are notified in the order they subscribed
   private final List<GameEventListener> listeners;
 
   public EventBus() {

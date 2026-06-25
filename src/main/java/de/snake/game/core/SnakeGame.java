@@ -48,8 +48,10 @@ public class SnakeGame {
 
   /** Executes one full game step: move, collision check, and apple check. */
   public void runStep() {
+    // Direction must be updated before move() so the snake moves in the newly requested direction
     executor.executeNext(snake);
     snake.move();
+    // Collision checks run after the move so they evaluate the new head position
     collisionDetector.check(snake, board);
     collisionDetector.checkApple(snake, apple);
     logger.debug("Game step executed");

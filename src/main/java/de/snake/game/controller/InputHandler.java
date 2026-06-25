@@ -15,6 +15,7 @@ public class InputHandler {
   }
 
   public void handleKeyEvent(KeyEvent event) {
+    // Delegate to handleKeyCode so the translation logic can be tested without a real KeyEvent
     handleKeyCode(event.getCode());
   }
 

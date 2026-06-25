@@ -28,6 +28,7 @@ public class GameBoard {
 
   /** Returns true if the given position is within the board boundaries. */
   public boolean isInsideBounds(Position position) {
+    // All four edges are checked: left (x>=0), right (x<width), top (y>=0), bottom (y<height)
     return position.getX() >= 0
         && position.getX() < width
         && position.getY() >= 0

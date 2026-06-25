@@ -13,6 +13,7 @@ public record RenderData(
     boolean gameOver
 ) {
   public RenderData {
+    // List.copyOf produces an immutable defensive copy, fixing SpotBugs EI_EXPOSE_REP2
     snakeBody = List.copyOf(snakeBody);
   }
 }

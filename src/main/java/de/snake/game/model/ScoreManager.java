@@ -20,6 +20,7 @@ public class ScoreManager {
 
   /** Resets the current score to zero, updating the high score if needed. */
   public void reset() {
+    // highScore must be updated before zeroing score — order matters here
     if (score > highScore) {
       highScore = score;
     }

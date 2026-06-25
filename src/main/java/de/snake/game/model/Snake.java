@@ -28,11 +28,14 @@ public class Snake {
       case RIGHT -> new Position(head.getX() + 1, head.getY());
     };
 
+    // addFirst prepends the new head; the body now has one extra segment at the front
     body.addFirst(newHead);
 
     if (growing) {
+      // Consume the flag after one move so the snake only grows by one cell per apple
       growing = false;
     } else {
+      // Drop the tail to maintain length — simulates movement without copying the whole list
       body.removeLast();
     }
   }
@@ -44,6 +47,7 @@ public class Snake {
 
   /** Sets the snake's direction, ignoring the change if it would reverse the snake. */
   public void setDirection(Direction newDirection) {
+    // Reversing into the body is an instant collision; the check enforces the game rule
     if (!direction.isOpposite(newDirection)) {
       direction = newDirection;
     }
@@ -56,6 +60,7 @@ public class Snake {
 
   /** Returns an unmodifiable view of the snake's body segments. */
   public List<Position> getBody() {
+    // Unmodifiable wrapper prevents callers from accidentally mutating the live body list
     return java.util.Collections.unmodifiableList(body);
   }
 

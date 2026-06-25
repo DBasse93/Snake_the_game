@@ -15,6 +15,7 @@ public class GameLoop extends AnimationTimer {
 
   private final SnakeGame game;
   private final GameRenderer renderer;
+  // -1L signals "timer not yet started"; any valid nanosecond timestamp is non-negative
   private long lastTickNanos = -1L;
 
   @SuppressFBWarnings("EI_EXPOSE_REP2")
@@ -31,6 +32,7 @@ public class GameLoop extends AnimationTimer {
   /** Advances the game by one tick if enough time has elapsed since the last tick. */
   public void tick(long nowNanos) {
     if (lastTickNanos < 0) {
+      // First call only records the baseline time; no game step runs until the next interval
       lastTickNanos = nowNanos;
       return;
     }

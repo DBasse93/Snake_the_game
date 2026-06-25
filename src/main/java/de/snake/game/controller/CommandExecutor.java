@@ -7,6 +7,7 @@ import java.util.Queue;
 /** Queues and executes commands one at a time against the snake. */
 public class CommandExecutor {
 
+  // Queue (FIFO) guarantees commands are processed in the order they were issued
   private final Queue<Command> queue;
 
   public CommandExecutor() {
@@ -21,6 +22,7 @@ public class CommandExecutor {
   /** Executes the next queued command against the given snake, if any. */
   public void executeNext(Snake snake) {
     if (!queue.isEmpty()) {
+      // Only one command per tick prevents multiple direction changes within a single frame
       queue.poll().execute(snake);
     }
   }

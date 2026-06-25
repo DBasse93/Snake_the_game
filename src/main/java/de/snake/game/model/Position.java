@@ -5,6 +5,7 @@ import java.util.Objects;
 /** Represents a 2D grid position with x and y coordinates. */
 public class Position {
 
+  // Named px/py rather than x/y to satisfy the CheckStyle MemberName pattern requirement
   private final int px;
   private final int py;
 
@@ -26,6 +27,7 @@ public class Position {
     if (this == o) {
       return true;
     }
+    // instanceof check guards the cast and handles null in one step (per Effective Java)
     if (!(o instanceof Position)) {
       return false;
     }

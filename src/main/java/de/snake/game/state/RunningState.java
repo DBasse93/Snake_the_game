@@ -16,11 +16,12 @@ public class RunningState implements GameState {
 
   @Override
   public void handleTick() {
+    // runStep is called directly to avoid game.tick() which would re-enter the state dispatch loop
     game.runStep();
   }
 
   @Override
   public void handleInput(Command command) {
-    // movement handled by CommandExecutor via InputHandler
+    // Direction commands are already queued in CommandExecutor by InputHandler; nothing to do here
   }
 }

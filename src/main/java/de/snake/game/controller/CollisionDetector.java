@@ -35,6 +35,7 @@ public class CollisionDetector {
   }
 
   private boolean isBodyCollision(Snake snake) {
+    // skip(1) skips the head itself (index 0) — only tail segments can collide with the head
     return snake.getBody().stream()
         .skip(1)
         .anyMatch(segment -> segment.equals(snake.getHead()));

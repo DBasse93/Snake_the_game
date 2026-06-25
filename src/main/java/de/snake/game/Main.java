@@ -57,6 +57,7 @@ public class Main extends Application {
         scoreManager.increase();
         Position newPos;
         do {
+          // Retry until the new apple lands on an empty cell, not inside the snake body
           newPos = new Position(
               random.nextInt(board.getWidth()),
               random.nextInt(board.getHeight()));
@@ -69,7 +70,9 @@ public class Main extends Application {
     Scene scene = new Scene(new StackPane(renderer.getCanvas()));
     scene.setOnKeyPressed(keyEvent -> {
       renderer.setGameOver(false);
+      // Queue the directional command so it is applied on the next game tick
       inputHandler.handleKeyEvent(keyEvent);
+      // Dummy command drives state transitions (Init→Running, GameOver→Init)
       game.handleInput(new MoveRightCommand());
     });
 

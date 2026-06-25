@@ -60,6 +60,7 @@ public class GameRenderer {
     GraphicsContext gc = canvas.getGraphicsContext2D();
     final int cell = board.getCellSize();
 
+    // Fill the entire canvas black first to erase the previous frame before drawing the new one
     gc.setFill(Color.BLACK);
     gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
@@ -88,6 +89,7 @@ public class GameRenderer {
     double cx = canvas.getWidth() / 2;
     double cy = canvas.getHeight() / 2;
 
+    // Alpha 0.65 dims the board without hiding it completely
     gc.setFill(Color.color(0, 0, 0, 0.65));
     gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 

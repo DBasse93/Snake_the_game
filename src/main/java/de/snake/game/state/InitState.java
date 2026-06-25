@@ -20,6 +20,7 @@ public class InitState implements GameState {
 
   @Override
   public void handleInput(Command command) {
+    // Any key press starts the game; the specific command is irrelevant — only the event matters
     game.setState(new RunningState(game));
   }
 }

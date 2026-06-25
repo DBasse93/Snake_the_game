@@ -87,8 +87,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <release>${java.version}</release>
                 </configuration>
             </plugin>
 
@@ -111,6 +110,11 @@
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
+                    <argLine>
+                        -XX:+EnableDynamicAgentLoading
+                        --enable-native-access=ALL-UNNAMED
+                        -Xshare:off
+                    </argLine>
                 </configuration>
             </plugin>
 
@@ -156,6 +160,7 @@
                     <printFailingErrors>true</printFailingErrors>
                     <includeTests>true</includeTests>
                     <targetJdk>${java.version}</targetJdk>
+                    <linkXRef>false</linkXRef>
                 </configuration>
                 <executions>
                     <execution>

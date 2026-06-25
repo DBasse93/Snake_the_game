@@ -4,6 +4,7 @@ import de.snake.game.controller.Command;
 import de.snake.game.core.SnakeGame;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
+/** Game-over state shown after a collision; transitions back to InitState on any input. */
 public class GameOverState implements GameState {
 
   private final SnakeGame game;

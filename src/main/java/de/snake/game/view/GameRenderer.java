@@ -13,6 +13,7 @@ import javafx.scene.text.TextAlignment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/** Renders the snake, apple, score, and game-over overlay onto a JavaFX canvas. */
 public class GameRenderer {
 
   private static final Logger logger = LogManager.getLogger(GameRenderer.class);
@@ -24,6 +25,7 @@ public class GameRenderer {
   private final Canvas canvas;
   private boolean gameOver;
 
+  /** Creates a new GameRenderer and initialises the canvas to fit the given board. */
   @SuppressFBWarnings("EI_EXPOSE_REP2")
   public GameRenderer(GameBoard board, Snake snake, Apple apple, ScoreManager scoreManager) {
     this.board = board;
@@ -36,10 +38,12 @@ public class GameRenderer {
     this.gameOver = false;
   }
 
+  /** Sets whether the game-over overlay should be shown on the next render. */
   public void setGameOver(boolean gameOver) {
     this.gameOver = gameOver;
   }
 
+  /** Returns a snapshot of the current render state as a RenderData record. */
   public RenderData getRenderData() {
     return new RenderData(
         snake.getHead(),
@@ -50,10 +54,11 @@ public class GameRenderer {
         gameOver);
   }
 
+  /** Draws the current game frame including the snake, apple, score, and optional overlay. */
   public void render() {
     logger.debug("Rendering frame");
     GraphicsContext gc = canvas.getGraphicsContext2D();
-    int cell = board.getCellSize();
+    final int cell = board.getCellSize();
 
     gc.setFill(Color.BLACK);
     gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -103,6 +108,7 @@ public class GameRenderer {
     gc.setTextAlign(TextAlignment.LEFT);
   }
 
+  /** Returns the JavaFX canvas used for rendering. */
   @SuppressFBWarnings("EI_EXPOSE_REP")
   public Canvas getCanvas() {
     return canvas;

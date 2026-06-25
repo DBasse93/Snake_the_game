@@ -2,34 +2,39 @@ package de.snake.game.model;
 
 import java.util.Objects;
 
+/** Represents a 2D grid position with x and y coordinates. */
 public class Position {
 
-  private final int x;
-  private final int y;
+  private final int px;
+  private final int py;
 
   public Position(int x, int y) {
-    this.x = x;
-    this.y = y;
+    this.px = x;
+    this.py = y;
   }
 
   public int getX() {
-    return x;
+    return px;
   }
 
   public int getY() {
-    return y;
+    return py;
   }
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Position)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Position)) {
+      return false;
+    }
     Position position = (Position) o;
-    return x == position.x && y == position.y;
+    return px == position.px && py == position.py;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(x, y);
+    return Objects.hash(px, py);
   }
 }

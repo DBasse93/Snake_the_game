@@ -4,6 +4,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+/** Translates JavaFX key events into movement commands and forwards them to the executor. */
 public class InputHandler {
 
   private final CommandExecutor executor;

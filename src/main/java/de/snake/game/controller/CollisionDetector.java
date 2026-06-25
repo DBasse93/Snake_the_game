@@ -7,6 +7,7 @@ import de.snake.game.model.Apple;
 import de.snake.game.model.GameBoard;
 import de.snake.game.model.Snake;
 
+/** Detects wall and self-collisions as well as apple-eating events for the snake. */
 public class CollisionDetector {
 
   private final EventBus eventBus;
@@ -15,6 +16,7 @@ public class CollisionDetector {
     this.eventBus = eventBus;
   }
 
+  /** Checks for wall or self-collision and publishes a CollisionEvent if detected. */
   public void check(Snake snake, GameBoard board) {
     if (!board.isInsideBounds(snake.getHead())) {
       eventBus.publish(new CollisionEvent());
@@ -25,6 +27,7 @@ public class CollisionDetector {
     }
   }
 
+  /** Checks if the snake's head overlaps the apple and publishes an AppleEatenEvent if so. */
   public void checkApple(Snake snake, Apple apple) {
     if (snake.getHead().equals(apple.getPosition())) {
       eventBus.publish(new AppleEatenEvent());

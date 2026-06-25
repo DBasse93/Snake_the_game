@@ -1,5 +1,6 @@
 package de.snake.game.model;
 
+/** Represents the apple that the snake can eat to grow and score points. */
 public class Apple {
 
   private Position position;

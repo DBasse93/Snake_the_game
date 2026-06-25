@@ -7,6 +7,7 @@ import javafx.animation.AnimationTimer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/** Drives the game forward at a fixed tick interval using a JavaFX AnimationTimer. */
 public class GameLoop extends AnimationTimer {
 
   private static final Logger logger = LogManager.getLogger(GameLoop.class);
@@ -27,6 +28,7 @@ public class GameLoop extends AnimationTimer {
     tick(now);
   }
 
+  /** Advances the game by one tick if enough time has elapsed since the last tick. */
   public void tick(long nowNanos) {
     if (lastTickNanos < 0) {
       lastTickNanos = nowNanos;

@@ -1,5 +1,6 @@
 package de.snake.game.model;
 
+/** Tracks the current score and all-time high score for the game session. */
 public class ScoreManager {
 
   private static final int SCORE_INCREMENT = 10;
@@ -12,10 +13,12 @@ public class ScoreManager {
     this.highScore = 0;
   }
 
+  /** Increases the current score by the fixed increment amount. */
   public void increase() {
     score += SCORE_INCREMENT;
   }
 
+  /** Resets the current score to zero, updating the high score if needed. */
   public void reset() {
     if (score > highScore) {
       highScore = score;
@@ -23,10 +26,12 @@ public class ScoreManager {
     score = 0;
   }
 
+  /** Returns the current score. */
   public int getScore() {
     return score;
   }
 
+  /** Returns the all-time high score. */
   public int getHighScore() {
     return highScore;
   }

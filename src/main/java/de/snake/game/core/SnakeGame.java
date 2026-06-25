@@ -12,6 +12,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/** Central game coordinator that owns the snake, board, apple, and current game state. */
 public class SnakeGame {
 
   private static final Logger logger = LogManager.getLogger(SnakeGame.class);
@@ -23,6 +24,7 @@ public class SnakeGame {
   private final CommandExecutor executor;
   private final CollisionDetector collisionDetector;
 
+  /** Creates a new SnakeGame with all required components and sets the initial state. */
   @SuppressFBWarnings("EI_EXPOSE_REP2")
   public SnakeGame(Snake snake, GameBoard board, Apple apple,
       CommandExecutor executor, CollisionDetector collisionDetector) {
@@ -34,14 +36,17 @@ public class SnakeGame {
     this.currentState = new InitState(this);
   }
 
+  /** Transitions the game to the given state. */
   public void setState(GameState state) {
     this.currentState = state;
   }
 
+  /** Delegates a tick to the current game state. */
   public void tick() {
     currentState.handleTick();
   }
 
+  /** Executes one full game step: move, collision check, and apple check. */
   public void runStep() {
     executor.executeNext(snake);
     snake.move();
@@ -50,6 +55,7 @@ public class SnakeGame {
     logger.debug("Game step executed");
   }
 
+  /** Forwards a player input command to the current game state. */
   public void handleInput(Command command) {
     currentState.handleInput(command);
   }

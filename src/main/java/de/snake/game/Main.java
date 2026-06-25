@@ -25,6 +25,7 @@ import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/** JavaFX Application entry point that wires up all game components and starts the game loop. */
 public class Main extends Application {
 
   private static final Logger logger = LogManager.getLogger(Main.class);
@@ -38,11 +39,11 @@ public class Main extends Application {
     EventBus eventBus = new EventBus();
     CommandExecutor executor = new CommandExecutor();
     CollisionDetector collisionDetector = new CollisionDetector(eventBus);
-    Random random = new Random();
+    final Random random = new Random();
 
     SnakeGame game = new SnakeGame(snake, board, apple, executor, collisionDetector);
     GameRenderer renderer = new GameRenderer(board, snake, apple, scoreManager);
-    GameLoop gameLoop = new GameLoop(game, renderer);
+    final GameLoop gameLoop = new GameLoop(game, renderer);
     InputHandler inputHandler = new InputHandler(executor);
 
     eventBus.subscribe(event -> {

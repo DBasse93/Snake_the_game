@@ -68,6 +68,7 @@ public class Main extends Application {
 
     Scene scene = new Scene(new StackPane(renderer.getCanvas()));
     scene.setOnKeyPressed(keyEvent -> {
+      renderer.setGameOver(false);
       inputHandler.handleKeyEvent(keyEvent);
       game.handleInput(new MoveRightCommand());
     });
